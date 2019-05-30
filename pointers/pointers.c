@@ -15,7 +15,14 @@
 */
 void string_copy(char *x, char *y)
 {
-
+    int i = 0;
+    while (*y != '\0')
+    {
+        x[i] = *y;
+        i++;
+        y++;
+    }
+    x[i] = '\0';
 }
 
 /*
@@ -29,6 +36,18 @@ void string_copy(char *x, char *y)
 char *find_char(char *str, int c)
 {
 
+    while (*str != '\0')
+    {
+        if (*str == c)
+        {
+            return str;
+        }
+        else
+        {
+            str++;
+        }
+    }
+    return NULL;
 }
 
 /*
@@ -39,9 +58,38 @@ char *find_char(char *str, int c)
 
     Do not use the `strstr` function from the standard library.
 */
+int string_length(char *string)
+{
+    int length = 0;
+    while (*string != '\0')
+    {
+        length++;
+        string++;
+    }
+    return length;
+}
 char *find_string(char *haystack, char *needle)
 {
+    int length = string_length(needle);
 
+    while (*haystack != '\0')
+    {
+        if (*haystack == needle[0])
+        {
+            char *firstIndex = haystack;
+
+            for (int i = 0; i < length; i++)
+            {
+                if (firstIndex[i] != needle[i])
+                {
+                    return NULL;
+                }
+            }
+            return firstIndex;
+        }
+        haystack++;
+    }
+    return NULL;
 }
 
 #ifndef TESTING
