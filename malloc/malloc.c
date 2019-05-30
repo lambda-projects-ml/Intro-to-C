@@ -60,6 +60,10 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
+    char *cast_ptr = (char *)ptr;
+
+    mem_copy(ptr, cast_ptr, new_size);
+    return cast_ptr;
 }
 
 #ifndef TESTING
