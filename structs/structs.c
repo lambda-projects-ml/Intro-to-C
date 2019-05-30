@@ -25,6 +25,13 @@ typedef struct Person
 */
 Person *createPerson(char *name, int age, int height, int weight)
 {
+    struct Person *a_person = malloc(sizeof(struct Person));
+    a_person->name = string_dup(name);
+    a_person->age = age;
+    a_person->height = height;
+    a_person->weight = weight;
+
+    return a_person;
 }
 
 /*
@@ -33,6 +40,8 @@ Person *createPerson(char *name, int age, int height, int weight)
 */
 void destroyPerson(Person *who)
 {
+    free(who->name);
+    free(who);
 }
 
 #ifndef TESTING
